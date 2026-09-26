@@ -6,8 +6,8 @@ I built this tool for **Lemnisca**, a growing startup in the Bio-AI and biomanuf
 sector. Designing cell-culture media depends on reliable knowledge of how each component
 behaves, and that knowledge was scattered across research papers. This project brings it
 into one trusted place, with every fact linked to the paper it came from.
-
-The team at Lemnisca uses it in their day-to-day work.
+A useful tool that serves as a highly robust source of information for a field where micro details 
+matter a lot, it becomes a perfect provider for it.
 
 ## What it is
 
