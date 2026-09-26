@@ -1,0 +1,11 @@
+# Real DOIs for smoke-testing the fetcher (mix of open-access, author manuscripts, and paywalled)
+10.1371/journal.pone.0000217
+10.1186/1475-2859-11-122
+10.3389/fmicb.2018.00519
+10.1038/nbt.1614
+10.1016/j.ymben.2011.08.001
+10.1038/msb4100050
+10.1128/jb.119.3.736-747.1974
+10.1016/j.cell.2011.04.022
+10.1093/nar/gkx1095
+10.1126/science.1098641
