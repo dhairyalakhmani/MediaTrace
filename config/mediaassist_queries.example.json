@@ -1,0 +1,13 @@
+{
+  "_comment": "Fill in url/method/params from Chrome DevTools > Network after clicking Download on each MediaAssist query page. List values are expanded into one request per combination. Run with --dry-run first. Requires CSIR-NCL permission for commercial use.",
+  "warmup_url": "https://mediaassist.ncl.res.in/ask",
+  "queries": [
+    {
+      "query_type": "solubility",
+      "method": "POST",
+      "url": "https://mediaassist.ncl.res.in/REPLACE_WITH_DOWNLOAD_ENDPOINT",
+      "params": { "component": ["glucose", "l-glutamine"], "temperature": "25" },
+      "format": ".csv"
+    }
+  ]
+}
