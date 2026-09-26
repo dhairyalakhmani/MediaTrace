@@ -1,0 +1,18 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+data/downloads/
+data/gap_list.csv
+data/inbox/
+backups/
+logs/
+mcp_tokens.json
+
+# local-only: third-party source spreadsheets, keys, editor/OS files
+data/mediaAssist Samples/
+*.pem
+.env.*
+!.env.example
+*.bak
+.DS_Store

@@ -1,0 +1,71 @@
+name: lemkb
+
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-lemkb}
+      POSTGRES_USER: ${POSTGRES_USER:-lemkb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lemkb}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lemkb} -d ${POSTGRES_DB:-lemkb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Real MinIO server. The official minio/minio image was pulled from Docker Hub,
+  # so we use Bitnami's (unmaintained but genuine) build for local development.
+  # In production this whole service is replaced by AWS S3.
+  minio:
+    image: bitnamilegacy/minio:latest
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-lemkbadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-lemkbadmin123}
+      MINIO_DEFAULT_BUCKETS: ${S3_BUCKET:-lemkb}
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # web console
+    volumes:
+      - miniodata:/bitnami/minio/data
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Scientific PDF parser (sections, paragraphs, page coordinates). CRF-only build:
+  # lighter and CPU-friendly; Apache-2.0 licensed.
+  grobid:
+    image: lfoppiano/grobid:0.8.1
+    restart: unless-stopped
+    environment:
+      # Works around a JDK cgroup-v2 detection crash on recent Docker Desktop.
+      JAVA_TOOL_OPTIONS: "-XX:-UseContainerSupport"
+    ports:
+      - "8070:8070"
+    healthcheck:
+      # the image has no curl/wget, so check the port with bash's built-in /dev/tcp
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8070"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  # PostgreSQL 18 client tools (pg_dump / pg_restore / psql) for backups and migrations.
+  # Not a server: run on demand with `docker compose run --rm pgtools ...`. A newer
+  # pg_dump can dump older servers, so this covers the local 16 and RDS 18 alike.
+  pgtools:
+    image: postgres:18
+    profiles: ["tools"]
+    entrypoint: []
+    command: ["true"]
+
+volumes:
+  pgdata:
+  miniodata:
