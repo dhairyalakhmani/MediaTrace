@@ -3,23 +3,11 @@
 ## Origin
 
 I built this tool for **Lemnisca**, a growing startup in the Bio-AI and biomanufacturing
-sector. Growing cells well starts with their media: the mix of sugars, amino acids,
-vitamins and minerals they feed on. Designing and optimising that media depends on knowing
-how each component behaves, including how much dissolves at a given temperature, how stable
-it stays at different pH and storage conditions, how fast cells take it up, which
-transporters carry it, and how it interacts with other components.
+sector. Designing cell-culture media depends on reliable knowledge of how each component
+behaves, and that knowledge was scattered across research papers. This project brings it
+into one trusted place, with every fact linked to the paper it came from.
 
-That knowledge was scattered across hundreds of research papers and curated tables, and
-some of it was quietly wrong. A citation's DOI would point to an unrelated paper, or a
-"paper" would turn out to be a supplementary table. For a team making experimental
-decisions, a number without a checkable source is a risk. Lemnisca needed a single source
-of truth: every fact tied to the paper that proves it, reachable by both scientists and
-AI assistants.
-
-This repository is that tool. It isn't a demo: it runs on the company's own AWS setup
-(Postgres on RDS, papers on S3, and a hosted MCP server with per-person access). Its first
-users were the Lemnisca team itself, asking questions and drawing charts from their own
-knowledge base.
+The team at Lemnisca uses it in their day-to-day work.
 
 ## What it is
 
