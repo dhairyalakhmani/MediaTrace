@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lemnisca Media KB</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand">Lemnisca <span>Media Knowledge Base</span></div>
+      <nav id="nav">
+        <a href="#/dashboard">Dashboard</a>
+        <a href="#/import">Import</a>
+        <a href="#/facts">Facts</a>
+        <a href="#/papers">Papers</a>
+        <a href="#/search">Search text</a>
+        <a href="#/access">Access</a>
+      </nav>
+      <div id="jobchip"></div>
+    </div>
+  </header>
+  <main id="view"></main>
+  <aside id="panel">
+    <div class="ph"><strong id="panel-title"></strong><button class="small" onclick="closePanel()">Close</button></div>
+    <div class="pb" id="panel-body"></div>
+  </aside>
+  <div id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
