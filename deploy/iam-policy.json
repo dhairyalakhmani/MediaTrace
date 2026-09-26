@@ -1,0 +1,25 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LightsailServerForMcp",
+      "Effect": "Allow",
+      "Action": [
+        "lightsail:GetBundles", "lightsail:GetBlueprints", "lightsail:GetRegions",
+        "lightsail:CreateInstances", "lightsail:GetInstance", "lightsail:GetInstances", "lightsail:GetInstanceState",
+        "lightsail:RebootInstance", "lightsail:DeleteInstance", "lightsail:TagResource",
+        "lightsail:AllocateStaticIp", "lightsail:AttachStaticIp", "lightsail:GetStaticIp", "lightsail:ReleaseStaticIp",
+        "lightsail:PutInstancePublicPorts", "lightsail:GetInstancePortStates",
+        "lightsail:DownloadDefaultKeyPair", "lightsail:GetOperation", "lightsail:GetOperations"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "LetTheServerReachRds",
+      "Effect": "Allow",
+      "Action": ["rds:DescribeDBInstances", "ec2:DescribeSecurityGroups",
+                 "ec2:AuthorizeSecurityGroupIngress", "ec2:RevokeSecurityGroupIngress"],
+      "Resource": "*"
+    }
+  ]
+}
